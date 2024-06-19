@@ -1,0 +1,17 @@
+<%- include('header') %>
+    <form id="register" action="/create" method="POST">
+        <label>
+            Ingresar email <br>
+            <input name="email" type="email" placeholder="mario@gmail.com"> <br>
+        </label>
+        <label>
+            Ingresar Dirección <br>
+            <input name="location" type="text" placeholder="Av. Siempreviva 742"> <br>
+        </label>
+        <label>
+            Ingresar contraseña <br>
+            <input name="password" type="password" placeholder="******"> <br>
+        </label>
+        <button>Registrarse</button>
+    </form>
+<%- include('footer') %>
