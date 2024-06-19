@@ -12,6 +12,11 @@
             Ingresar contraseña <br>
             <input name="password" type="password" placeholder="******"> <br>
         </label>
+        <% if(error) { %>
+            <p style="color:red">
+                <%= error %>
+            </p>
+        <% } %>
         <button>Registrarse</button>
     </form>
 <%- include('footer') %>

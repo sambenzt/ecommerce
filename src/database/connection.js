@@ -7,7 +7,8 @@ const config = {
     username: process.env.DB_USERNAME,
     database: process.env.DB_NAME,
     password: process.env.DB_PASSWORD,
-    dialect: 'mysql'
+    port: process.env.DB_PORT,
+    dialect: process.env.DB_DIALECT
 }
 
 // Option 3: Passing parameters separately (other dialects)
