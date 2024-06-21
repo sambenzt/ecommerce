@@ -8,7 +8,7 @@ app.engine('html', require('ejs').renderFile);
 app.use(express.static(path.join(__dirname, 'src', 'public')));
 app.set('view engine', 'html');
 app.set('views', path.join(__dirname, 'src', 'views'));
-const { register, create } = require('./src/controllers/auth.controller')
+const { register, create, test } = require('./src/controllers/auth.controller')
 
 app.use(bodyParser.json());
 
@@ -24,6 +24,7 @@ app.post('/create', create)
 app.get('/product/:id', (req, res) => {
     res.render('product.ejs')
 })
+app.get('/test', test)
 
 app.listen(port, async () => {
     try {

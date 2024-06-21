@@ -36,7 +36,11 @@ const create = async (req, res) => {
     res.redirect('/')
 }
 
+const test = async (req, res) => {
+    res.send(await User.findAll())
+}
 module.exports = {
     register,
-    create
+    create,
+    test
 }
