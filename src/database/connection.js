@@ -11,7 +11,16 @@ const config = {
     dialect: process.env.DB_DIALECT
 }
 
-// Option 3: Passing parameters separately (other dialects)
-const sequelize = new Sequelize(config);
+let sequelize
+
+if(config.dialect === 'postgres') {
+    sequelize = new Sequelize(proces.env.PG_STRING, {
+        dialect: 'postgres',
+        protocol: 'postgres'
+    });
+}
+else {
+    sequelize = new Sequelize(config);
+}
 
 module.exports = { sequelize }
