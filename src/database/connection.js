@@ -14,7 +14,7 @@ const config = {
 let sequelize
 
 if(config.dialect === 'postgres') {
-    sequelize = new Sequelize(proces.env.PG_STRING, {
+    sequelize = new Sequelize(process.env.PG_STRING, {
         dialect: 'postgres',
         protocol: 'postgres'
     });
