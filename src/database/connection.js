@@ -16,7 +16,13 @@ let sequelize
 if(config.dialect === 'postgres') {
     sequelize = new Sequelize(process.env.PG_STRING, {
         dialect: 'postgres',
-        protocol: 'postgres'
+        protocol: 'postgres',
+        dialectOptions: {
+            ssl: {
+              require: true, // Requerir SSL/TLS
+              rejectUnauthorized: false // No verificar el certificado (puede ser necesario en entornos de desarrollo)
+            }
+        }
     });
 }
 else {
