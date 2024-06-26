@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
+const session = require('express-session')
 const bodyParser = require('body-parser')
+const flash = require('connect-flash');
 const port = 4055
 const { sequelize } = require('./src/database/connection')
 const path = require('path')
@@ -8,22 +10,36 @@ app.engine('html', require('ejs').renderFile);
 app.use(express.static(path.join(__dirname, 'src', 'public')));
 app.set('view engine', 'html');
 app.set('views', path.join(__dirname, 'src', 'views'));
-const { register, create, test } = require('./src/controllers/auth.controller')
+const { register, login, auth, create, profile, logout, test, home, product } = require('./src/controllers/auth.controller');
+const authMiddleware = require('./src/middleware/auth.middleware');
 
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-    res.render('home.ejs')
-})
+app.use(session({
+    secret: 'd44d4xfjks0sd5as5f05gj14u0da5s54630',
+    resave: true,
+    saveUninitialized: true
+}))
+
+app.use(flash())
+
+
+app.use((req, res, next) => {
+    res.locals.auth = req.session.auth;
+    next();
+});
+
+app.get('/', home)
 
 app.get('/register', register)
 app.post('/create', create)
-
-app.get('/product/:id', (req, res) => {
-    res.render('product.ejs')
-})
+app.get('/login', login)
+app.post('/auth', auth)
+app.get('/profile', authMiddleware, profile)
+app.get('/logout', logout)
+app.get('/product/:id', product)
 app.get('/test', test)
 
 app.listen(port, async () => {

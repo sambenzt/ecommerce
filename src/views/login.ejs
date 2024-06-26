@@ -1,0 +1,18 @@
+<%- include('header') %>
+    <form id="register" action="/auth" method="POST">
+        <label>
+            Ingresar email <br>
+            <input name="email" type="email" placeholder="mario@gmail.com"> <br>
+        </label>
+        <label>
+            Ingresar contraseña <br>
+            <input name="password" type="password" placeholder="******"> <br>
+        </label>
+        <% if(error) { %>
+            <p style="color:red">
+                <%= error %>
+            </p>
+        <% } %>
+        <button>Ingresar</button>
+    </form>
+<%- include('footer') %>

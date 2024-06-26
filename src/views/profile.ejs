@@ -1,0 +1,33 @@
+<%- include('header') %>
+    
+    <section>
+        <h1>Mis compras</h1>
+    </section>
+
+    <section id="order-container">
+        <% for(let i= 1 ; i <= 5; i++) { %>
+        <div class="order-card">
+            <h2>Orden #123</h2>
+            <p><strong>ID Usuario:</strong> 45</p>
+            <p><strong>Fecha de Creación:</strong> 2024-06-25</p>
+            <div class="order-items">
+                <h3>Productos Comprados:</h3>
+                <div class="item">
+                    <p><strong>Producto:</strong> Laptop Dell Inspiron</p>
+                    <p><strong>Cantidad:</strong> 2</p>
+                    <p><strong>Precio:</strong> $750.00</p>
+                </div>
+                <div class="item">
+                    <p><strong>Producto:</strong> Mouse Inalámbrico Microsoft</p>
+                    <p><strong>Cantidad:</strong> 1</p>
+                    <p><strong>Precio:</strong> $25.00</p>
+                </div>
+            </div>
+            <div class="total">
+                <p><strong>Total:</strong> $1525.00</p>
+            </div>
+        </div>
+        <% } %>
+    </section>
+
+<%- include('footer') %>

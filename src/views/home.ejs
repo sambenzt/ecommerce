@@ -3,18 +3,17 @@
             <h1>Nuestros productos</h1>
         </section>
         <section id="items">
-            <% for(let i = 0; i < 10; i++) {%>
+            <% for(product of products) {%>
             <article class="product-item">
                 <div>
-                    <img src="https://lh5.googleusercontent.com/proxy/PT-Y0X3Dd4-IEcJezTW1ji_vj63fugYVC1QaiIvQTWzpjuUvVQ55ZomK7hImbKDbY8csA2QcuCaFY0IuVKxVMlptVcgpV6e60osyTAP5Ov_y29HDCkb3UA" alt="">
+                    <img src="<%= product.img %>" alt="">
                 </div>
                 <div>
-                    <span class="product-title">Alfajor</span>
-                    <span class="product-price">$150</span>
-                    <span class="product-description">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit
-                    </span>
-                    <span class="product-page"><a href="/product/<%= i %>">ver más</a></span>
+                    <span class="product-title"><%= product.name %></span>
+                    <span class="product-price">$<%= product.price %></span>
+                    <br>
+                    <span class="product-description"><%= product.description %></span>
+                    <span class="product-page"><a href="/product/<%= product.id %>">ver más</a></span>
                     <button>Añadir al carrito</button>
                 </div>
             </article>

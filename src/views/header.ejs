@@ -15,8 +15,14 @@
             <section id="links">
                 <a href="/">Inicio</a>
                 <a href="">Nosotros</a>
-                <a href="/register">Registrarse</a>
-                <a href="/login">Login</a>
+
+                <% if(auth) { %>
+                    <a href="/profile">Mi perfil</a>
+                    <a href="/logout">Logout</a>
+                <% } else { %>
+                    <a href="/register">Registrarse</a>
+                    <a href="/login">Login</a>
+                <% } %>
             </section>
         </nav>
     </header>
