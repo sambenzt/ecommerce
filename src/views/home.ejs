@@ -14,7 +14,7 @@
                     <br>
                     <span class="product-description"><%= product.description %></span>
                     <span class="product-page"><a href="/product/<%= product.id %>">ver más</a></span>
-                    <button>Añadir al carrito</button>
+                    <button data="<%= product.id %>" class="add-product-button">Añadir al carrito</button>
                 </div>
             </article>
             <% } %>

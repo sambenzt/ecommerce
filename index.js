@@ -10,7 +10,7 @@ app.engine('html', require('ejs').renderFile);
 app.use(express.static(path.join(__dirname, 'src', 'public')));
 app.set('view engine', 'html');
 app.set('views', path.join(__dirname, 'src', 'views'));
-const { register, login, auth, create, profile, logout, test, home, product } = require('./src/controllers/auth.controller');
+const { register, login, auth, create, profile, logout, test, home, product, addProduct, cart, payment } = require('./src/controllers/auth.controller');
 const authMiddleware = require('./src/middleware/auth.middleware');
 
 app.use(bodyParser.json());
@@ -28,6 +28,7 @@ app.use(flash())
 
 app.use((req, res, next) => {
     res.locals.auth = req.session.auth;
+    res.locals.cartTotal = req.session.carrito ? req.session.carrito.length : 0;
     next();
 });
 
@@ -40,6 +41,9 @@ app.post('/auth', auth)
 app.get('/profile', authMiddleware, profile)
 app.get('/logout', logout)
 app.get('/product/:id', product)
+app.post('/add-product', addProduct)
+app.get('/cart',authMiddleware, cart)
+app.post('/payment', authMiddleware, payment)
 app.get('/test', test)
 
 app.listen(port, async () => {

@@ -1,4 +1,6 @@
 const User = require("../database/models/User")
+const Order = require("../database/models/Order")
+const OrderItem = require("../database/models/OrderItem")
 const Product = require("../database/models/Product")
 const {sequelize} = require('../database/connection')
 
@@ -78,8 +80,74 @@ const create = async (req, res) => {
 }
 
 const test = async (req, res) => {
-    res.send(await User.findAll())
+    res.render('cart.ejs')
 }
+
+const addProduct = (req, res) => {
+    const { id } = req.body
+    if(!req.session.carrito || req.session.carrito.length === 0) {
+        req.session.carrito = [id]
+    }
+    else {
+        req.session.carrito.push(id)
+    }
+
+    const total = req.session.carrito.length
+    
+    res.send({"message": "producto agregado", "total": total})
+}
+
+const cart = async (req, res) => {
+
+    let allProducts = []
+    let total = 0
+
+    if(!req.session.carrito) {
+       return res.render('cart.ejs', {allProducts: []})
+    }
+
+    for(let i = 0; i < req.session.carrito.length; i++) {
+        const id = req.session.carrito[i]
+        const product = await Product.findByPk(id)
+        total = total + parseFloat(product.price)
+        allProducts.push(product)
+    }
+
+    res.render('cart.ejs', {allProducts: allProducts, total: total})
+}
+
+const payment = async (req, res) => {
+    let total = 0
+
+    for(let i = 0; i < req.session.carrito.length; i++) {
+        const id = req.session.carrito[i]
+        const product = await Product.findByPk(id)
+        total = total + parseFloat(product.price)
+    }
+
+    const order = await Order.create({
+        user_id: req.session.auth.id,
+        created_at: new Date(),
+        total: total
+    })
+
+    for(let i = 0; i < req.session.carrito.length; i++) {
+        const id = req.session.carrito[i]
+        const product = await Product.findByPk(id)
+        OrderItem.create({
+            order_id: order.id,
+            product_id: product.id,
+            price: product.price,
+            quantity: 1,
+        })
+    }
+
+    req.session.carrito = []
+
+    res.send({message: "pago exitoso"})
+}
+
+
 module.exports = {
     home,
     product,
@@ -89,5 +157,8 @@ module.exports = {
     auth,
     profile,
     logout,
+    addProduct,
+    cart,
+    payment,
     test
 }

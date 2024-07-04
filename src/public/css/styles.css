@@ -243,3 +243,95 @@ h1{
     font-size: 1.2em;
     font-weight: bold;
 }
+
+#cart-count {
+    position: absolute;
+    top: 5px;
+    margin-left: 15px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: aquamarine;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    color: black;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.formulario-pago {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin-top: 50px;
+}
+.formulario-pago h2 {
+    margin-top: 0;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+.formulario-pago label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+.formulario-pago input[type="text"],
+.formulario-pago input[type="email"],
+.formulario-pago input[type="number"],
+.formulario-pago input[type="tel"],
+.formulario-pago input[type="date"],
+.formulario-pago input[type="month"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.formulario-pago button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.formulario-pago button:hover {
+    background-color: #45a049;
+}
+
+#payment-success{
+    display: none;
+    text-align: center;
+    color: green;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 20px;
+}
