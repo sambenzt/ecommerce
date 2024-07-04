@@ -35,7 +35,7 @@ const auth = async (req, res) => {
     req.session.auth = results[0]
 
     
-    res.redirect('/profile')
+    res.redirect('/')
 }
 
 const profile = async (req, res) => {
